@@ -1,0 +1,34 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Zaloguj</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <p>Zaloguj się na swoje konto w myWallet.</p>
+  <br>
+  <ion-list>
+
+    <ion-item>
+      <ion-label fixed>Adres E-mail</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Hasło</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button color="secondary" block padding (click)="login()">Zaloguj</button>
+    </ion-item>
+  </ion-list>
+</ion-content>
