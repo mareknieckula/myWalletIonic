@@ -14,5 +14,25 @@
 
 
 <ion-content padding>
-  <p>Zarejestruj swoje konto w myWallet.</p>
+  <p>Utwórz swoje konto w myWallet.</p>
+  <br>
+  <ion-list>
+
+    <ion-item>
+      <ion-label fixed>Adres E-mail</ion-label>
+      <ion-input type="text" #username></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Hasło</ion-label>
+      <ion-input type="password" #password></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Powtórz Hasło</ion-label>
+      <ion-input type="password" #password1></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button color="secondary" block padding (click)="registerUser()">Zarejestruj</button>
+    </ion-item>
+  </ion-list>
 </ion-content>
