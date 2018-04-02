@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MainPage } from '../main/main';
-import { ToastController } from 'ionic-angular';
+import { AlertController, ToastController } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
  * Generated class for the LoginPage page.
@@ -17,7 +18,10 @@ import { ToastController } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private toastCtrl: ToastController) {
+  @ViewChild('username') user;
+  @ViewChild('password') password;
+
+  constructor(private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, private toastCtrl: ToastController, private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -25,7 +29,10 @@ export class LoginPage {
   }
 
   login() {
-    this.navCtrl.push(MainPage);
+    this.fire.auth.signInWithEmailAndPassword(this.user.value, this.password.value)
+    .then(data =>{
+      console.log('got data', data);
+      this.navCtrl.setRoot(MainPage);
     let toast = this.toastCtrl.create({
       message: 'Użytkownik zalogowany!',
       duration: 1500,
@@ -33,6 +40,17 @@ export class LoginPage {
     });
 
     toast.present();
+    }
+    )
+    .catch(error=>{
+      let alert = this.alertCtrl.create({
+        title: 'Błąd!',
+        subTitle: error,
+        buttons: ['OK']
+      });
+      alert.present();
+    })
+
   }
 
 }

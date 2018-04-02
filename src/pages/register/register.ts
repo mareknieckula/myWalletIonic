@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
-import { LoginPage } from '../login/login';
+import { HomePage } from '../home/home';
 
 
 /**
@@ -36,17 +36,21 @@ export class RegisterPage {
       this.fire.auth.createUserWithEmailAndPassword(this.user.value, this.password.value)
       .then(data =>{
         console.log('got data', data);
-        let toast = this.toastCtrl.create({
-          message: 'Konto zostało utworzone!',
-          duration: 2000,
-          position: 'bottom'
+        let alert = this.alertCtrl.create({
+          title: 'Info!',
+          subTitle: 'Konto zostało utworzone! Możesz się teraz zalogować!',
+          buttons: ['OK']
         });
-
-        toast.present();
-        this.navCtrl.push(LoginPage);
+        alert.present();
+        this.navCtrl.push(HomePage);
       } )
       .catch(error=> {
-        console.log('got error', error);
+        let alert = this.alertCtrl.create({
+          title: 'Błąd!',
+          subTitle: error,
+          buttons: ['OK']
+        });
+        alert.present();
       })
 
     }

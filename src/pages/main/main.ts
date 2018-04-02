@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { ToastController } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
  * Generated class for the MainPage page.
@@ -18,7 +19,10 @@ import { ToastController } from 'ionic-angular';
 })
 export class MainPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private toastCtrl: ToastController) {
+  email: string;
+
+  constructor(private fire:AngularFireAuth ,public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private toastCtrl: ToastController) {
+    this.email = fire.auth.currentUser.email;
   }
 
   ionViewDidLoad() {
@@ -39,7 +43,7 @@ export class MainPage {
         {
           text: 'Wyloguj',
           handler: () => {
-            this.navCtrl.push(HomePage);
+            this.fire.auth.signOut;
             let toast = this.toastCtrl.create({
               message: 'Wylogowano!',
               duration: 1500,
@@ -47,6 +51,8 @@ export class MainPage {
             });
 
             toast.present();
+            this.navCtrl.setRoot(HomePage);
+
           }
         }
       ]
