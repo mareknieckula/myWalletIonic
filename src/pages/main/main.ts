@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { DodajWydatekPage } from '../dodaj-wydatek/dodaj-wydatek';
+import { AnalizujPage } from '../analizuj/analizuj';
 import { ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -27,6 +29,14 @@ export class MainPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MainPage');
+  }
+
+  openAnalizuj() {
+    this.navCtrl.push(AnalizujPage);
+  }
+
+  openDodaj() {
+    this.navCtrl.push(DodajWydatekPage);
   }
 
   logout() {

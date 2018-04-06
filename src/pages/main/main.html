@@ -14,11 +14,22 @@
 
 
 <ion-content padding>
-
+  <img ion-img src="../../assets/imgs/analytics.png">
+  <h1>Witaj w myWallet!</h1>
+  <p>Dodaj nowy wydatek pieniężny lub przeanalizuj dotychczasowe wydatki.</p>
+  <button ion-button icon-end color="secondary" block padding (click)="openDodaj()">
+    Dodaj Wydatek
+    <ion-icon name="add"></ion-icon>
+  </button>
+  <button ion-button icon-end color="light" block padding (click)="openAnalizuj()">
+    Analiza Wydatków
+    <ion-icon name="analytics"></ion-icon>
+  </button>
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-    Zalogowany użytkownik:<br>
+    Zalogowany użytkownik:
+    <br>
     <b>{{email}}</b>
     <ion-buttons end>
       <button ion-button icon-right color="dark" (click)="logout()">

@@ -9,6 +9,8 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { MainPage } from '../pages/main/main';
+import { DodajWydatekPage } from '../pages/dodaj-wydatek/dodaj-wydatek';
+import { AnalizujPage } from '../pages/analizuj/analizuj';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { firebaseAuth } from './app.firebase.config';
@@ -20,7 +22,9 @@ import { firebaseAuth } from './app.firebase.config';
     HomePage,
     LoginPage,
     RegisterPage,
-    MainPage
+    MainPage,
+    DodajWydatekPage,
+    AnalizujPage
   ],
   imports: [
     BrowserModule,
@@ -35,6 +39,8 @@ import { firebaseAuth } from './app.firebase.config';
     LoginPage,
     RegisterPage,
     MainPage,
+    DodajWydatekPage,
+    AnalizujPage
   ],
   providers: [
     StatusBar,

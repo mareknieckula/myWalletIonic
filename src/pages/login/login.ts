@@ -30,26 +30,26 @@ export class LoginPage {
 
   login() {
     this.fire.auth.signInWithEmailAndPassword(this.user.value, this.password.value)
-    .then(data =>{
-      console.log('got data', data);
-      this.navCtrl.setRoot(MainPage);
-    let toast = this.toastCtrl.create({
-      message: 'Użytkownik zalogowany!',
-      duration: 1500,
-      position: 'bottom'
-    });
+      .then(data => {
+        console.log('got data', data);
+        this.navCtrl.setRoot(MainPage);
+        let toast = this.toastCtrl.create({
+          message: 'Użytkownik zalogowany!',
+          duration: 1500,
+          position: 'bottom'
+        });
 
-    toast.present();
-    }
-    )
-    .catch(error=>{
-      let alert = this.alertCtrl.create({
-        title: 'Błąd!',
-        subTitle: error,
-        buttons: ['OK']
-      });
-      alert.present();
-    })
+        toast.present();
+      }
+      )
+      .catch(error => {
+        let alert = this.alertCtrl.create({
+          title: 'Błąd!',
+          subTitle: error,
+          buttons: ['OK']
+        });
+        alert.present();
+      })
 
   }
 
