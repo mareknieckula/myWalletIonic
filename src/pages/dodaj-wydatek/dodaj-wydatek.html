@@ -14,14 +14,14 @@
 
 
 <ion-content padding>
-  <p>Wpisz kwotę i wybierz kategorię.</p>
+  <p><b>Wpisz kwotę i wybierz kategorię.</b></p>
   <ion-item>
     <ion-label>Kwota:</ion-label>
-    <ion-input type="number" placeholder="0,00" color="secondary"></ion-input>
+    <ion-input [(ngModel)]="wydatek.price" type="number" step="0.01" min="0.01" placeholder="0,00" color="secondary"></ion-input>
   </ion-item>
   <br>
-  <ion-list radio-group>
-    <ion-label>Kategoria:</ion-label>
+  <ion-list [(ngModel)]="wydatek.category" radio-group>
+    <ion-label><b>Kategoria:</b></ion-label>
     <ion-item>
       <ion-label>Jedzenie</ion-label>
       <ion-radio value="jedzenie" color="secondary" checked></ion-radio>
@@ -47,7 +47,7 @@
       <ion-radio value="inne" color="secondary"></ion-radio>
     </ion-item>
   </ion-list>
-  <button ion-button icon-end block color="secondary">Zapisz!
+  <button ion-button icon-end block color="secondary" (click)=addWydatek(wydatek)>Zapisz!
     <ion-icon icon name="checkmark"></ion-icon>
   </button>
 </ion-content>

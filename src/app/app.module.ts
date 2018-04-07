@@ -1,3 +1,4 @@
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -14,6 +15,7 @@ import { AnalizujPage } from '../pages/analizuj/analizuj';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { firebaseAuth } from './app.firebase.config';
+import { ListaWydatkowService } from '../services/lista-wydatkow/lista-wydatkow.service';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { firebaseAuth } from './app.firebase.config';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseAuth),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,7 +48,9 @@ import { firebaseAuth } from './app.firebase.config';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ListaWydatkowService
   ]
 })
-export class AppModule { }
+export class AppModule {
+}

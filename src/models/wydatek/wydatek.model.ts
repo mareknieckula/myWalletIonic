@@ -3,4 +3,5 @@ export interface Wydatek {
   price: number;
   category: string;
   email: string;
+  created: string;
 }
