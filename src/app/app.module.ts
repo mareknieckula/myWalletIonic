@@ -1,4 +1,3 @@
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -15,7 +14,8 @@ import { AnalizujPage } from '../pages/analizuj/analizuj';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { firebaseAuth } from './app.firebase.config';
-import { ListaWydatkowService } from '../services/lista-wydatkow/lista-wydatkow.service';
+import { SQLite} from '@ionic-native/sqlite';
+import { ReportPage } from '../pages/report/report';
 
 
 @NgModule({
@@ -26,14 +26,14 @@ import { ListaWydatkowService } from '../services/lista-wydatkow/lista-wydatkow.
     RegisterPage,
     MainPage,
     DodajWydatekPage,
-    AnalizujPage
+    AnalizujPage,
+    ReportPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseAuth),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,13 +43,14 @@ import { ListaWydatkowService } from '../services/lista-wydatkow/lista-wydatkow.
     RegisterPage,
     MainPage,
     DodajWydatekPage,
-    AnalizujPage
+    AnalizujPage,
+    ReportPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    ListaWydatkowService
+    SQLite
   ]
 })
 export class AppModule {

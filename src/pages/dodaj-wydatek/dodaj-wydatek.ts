@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Wydatek } from '../../models/wydatek/wydatek.model';
-import { ListaWydatkowService } from '../../services/lista-wydatkow/lista-wydatkow.service';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 
 /**
  * Generated class for the DodajWydatekPage page.
@@ -16,7 +16,10 @@ import { ListaWydatkowService } from '../../services/lista-wydatkow/lista-wydatk
   selector: 'page-dodaj-wydatek',
   templateUrl: 'dodaj-wydatek.html',
 })
+
+
 export class DodajWydatekPage {
+
 
   wydatek: Wydatek = {
     price: undefined,
@@ -25,16 +28,27 @@ export class DodajWydatekPage {
     created: new Date().toLocaleDateString(),
   }
 
-  constructor(private wydatki: ListaWydatkowService, private fire:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private sqlite: SQLite, private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DodajWydatekPage');
   }
 
-  addWydatek(wydatek: Wydatek) {
-    this.wydatki.addWydatek(wydatek).then(ref=>{
-      console.log(ref.key);})
-  }
+  addWydatek() {
+    this.sqlite.create({
+      name: 'ionicdb.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {
+      db.executeSql('CREATE TABLE IF NOT EXISTS wydatki (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, created TEXT, category TEXT, price REAL)', {})
+        .then(res => console.log('Executed SQL'))
+        .catch(e => console.log(e));
+      db.executeSql('INSERT INTO wydatki VALUES(NULL,?,?,?,?)', [this.wydatek.email, this.wydatek.created, this.wydatek.category, this.wydatek.price])
+        .then(res => alert(res))
+        .catch(e => console.log(e))
+
+        });
+
+    }
 
 }
