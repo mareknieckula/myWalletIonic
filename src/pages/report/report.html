@@ -7,15 +7,24 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>report</ion-title>
+    <ion-title>Wygenerowany Raport</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  Jedzenie: {{totalJedzenie}} Rozrywka: {{totalRozrywka}} Transport: {{totalTransport}} Edukacja: {{totalEdukacja}} Mieszkanie:
-  {{totalMieszkanie}} Inne: {{totalInne}}
-
-  <button ion-button block color="secondary" (click)="closeReport()">Analizuj!</button>
+  <h1>Raport Wydatków</h1>
+  Wygenerowany dnia: <b>{{now}}</b> o godzinie <b>{{time}}</b>
+  <br>
+  <br>
+  <p id="report">
+  Jedzenie: <b>{{totalJedzenie | number:'1.2-2'}}</b> zł.<br>
+  Rozrywka: <b>{{totalRozrywka | number:'1.2-2'}}</b> zł.<br>
+  Transport: <b>{{totalTransport | number:'1.2-2'}}</b> zł. <br>
+  Edukacja: <b>{{totalEdukacja | number:'1.2-2'}}</b> zł. <br>
+  Mieszkanie: <b>{{totalMieszkanie | number:'1.2-2'}}</b> zł. <br>
+  Inne wydatki: <b>{{totalInne | number:'1.2-2'}} zł.</b><br>
+  </p>
+  <button ion-button block color="secondary" (click)="closeReport()">Zamknij!</button>
 </ion-content>
