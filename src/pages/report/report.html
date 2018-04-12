@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar hideBackButton>
     <ion-title>Wygenerowany Raport</ion-title>
   </ion-navbar>
 
@@ -14,17 +14,28 @@
 
 
 <ion-content padding>
+    <img ion-img src="assets/imgs/report.png">
   <h1>Raport Wydatków</h1>
-  Wygenerowany dnia: <b>{{now}}</b> o godzinie <b>{{time}}</b>
-  <br>
+  Wygenerowany dnia:
+  <b>{{now}}</b> o godzinie
+  <b>{{time}}</b>
+  <br> Użytkownik:
+  <b>{{user}}</b>
   <br>
   <p id="report">
-  Jedzenie: <b>{{totalJedzenie | number:'1.2-2'}}</b> zł.<br>
-  Rozrywka: <b>{{totalRozrywka | number:'1.2-2'}}</b> zł.<br>
-  Transport: <b>{{totalTransport | number:'1.2-2'}}</b> zł. <br>
-  Edukacja: <b>{{totalEdukacja | number:'1.2-2'}}</b> zł. <br>
-  Mieszkanie: <b>{{totalMieszkanie | number:'1.2-2'}}</b> zł. <br>
-  Inne wydatki: <b>{{totalInne | number:'1.2-2'}} zł.</b><br>
+    Jedzenie:
+    <b>{{totalJedzenie | number:'1.2-2'}}</b> zł.
+    <br> Rozrywka:
+    <b>{{totalRozrywka | number:'1.2-2'}}</b> zł.
+    <br> Transport:
+    <b>{{totalTransport | number:'1.2-2'}}</b> zł.
+    <br> Edukacja:
+    <b>{{totalEdukacja | number:'1.2-2'}}</b> zł.
+    <br> Mieszkanie:
+    <b>{{totalMieszkanie | number:'1.2-2'}}</b> zł.
+    <br> Inne wydatki:
+    <b>{{totalInne | number:'1.2-2'}}</b> zł.
+    <br>
   </p>
   <button ion-button block color="secondary" (click)="closeReport()">Zamknij!</button>
 </ion-content>

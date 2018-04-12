@@ -8,6 +8,7 @@ import { ReportPage } from './report';
   ],
   imports: [
     IonicPageModule.forChild(ReportPage),
+
   ],
 })
-export class ReportPageModule {}
+export class ReportPageModule { }

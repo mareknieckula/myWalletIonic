@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Wydatek } from '../../models/wydatek/wydatek.model';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-
+import { MainPage } from '../main/main';
 /**
  * Generated class for the DodajWydatekPage page.
  *
@@ -25,11 +25,18 @@ export class DodajWydatekPage {
     price: undefined,
     category: undefined,
     email: this.fire.auth.currentUser.email,
-    created: new Date().toLocaleDateString(),
+    created: new Date().toISOString().slice(0,10)
   }
 
+
+
+
+
   constructor(private sqlite: SQLite, private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+
   }
+
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DodajWydatekPage');
@@ -44,7 +51,11 @@ export class DodajWydatekPage {
         .then(res => console.log('Executed SQL'))
         .catch(e => console.log(e));
       db.executeSql('INSERT INTO wydatki VALUES(NULL,?,?,?,?)', [this.wydatek.email, this.wydatek.created, this.wydatek.category, this.wydatek.price])
-        .then(res => alert(res))
+        .then(res => {
+          console.log(res);
+          alert('Zapisano!');
+          this.navCtrl.push(MainPage);
+        })
         .catch(e => console.log(e))
 
         });

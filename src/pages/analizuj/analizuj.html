@@ -14,8 +14,9 @@
 
 
 <ion-content padding>
-  <h1>Analizuj Wydatki</h1>
-  <p>Wybierz datę od: i do:</p>
+    <img ion-img src="assets/imgs/analytics.png">
+  <h1>Wygeneruj Raport</h1>
+  <p>Wybierz datę początkową i końcową raportu i nacisnij przycisk "Analizuj!"</p>
   <ion-item>
       <ion-label>Od: </ion-label>
       <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY MM DD" [(ngModel)]="date.from"></ion-datetime>
@@ -24,7 +25,6 @@
         <ion-label>Do: </ion-label>
         <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY MM DD" [(ngModel)]="date.to"></ion-datetime>
       </ion-item>
-  <button ion-button block (click)="getReport()">Analizuj!</button>
-  from: {{date.from}}
-  to: {{date.to}}
+      <br>
+  <button ion-button block color="secondary" (click)="getReport()">Analizuj!</button>
 </ion-content>

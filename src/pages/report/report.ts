@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { ToastController } from 'ionic-angular';
 import { MainPage } from '../main/main';
+import { AngularFireAuth } from 'angularfire2/auth';
+
+
 
 /**
  * Generated class for the ReportPage page.
@@ -18,21 +21,21 @@ import { MainPage } from '../main/main';
 })
 export class ReportPage {
 
-  totalJedzenie = 0;
-  totalRozrywka = 0;
-  totalTransport = 0;
-  totalEdukacja = 0;
-  totalMieszkanie = 0;
-  totalInne = 0;
+  totalJedzenie: number;
+  totalRozrywka: number;
+  totalTransport: number;
+  totalEdukacja: number;
+  totalMieszkanie: number;
+  totalInne: number;
+
+  user = this.fire.auth.currentUser.email;
 
   from: string;
   to: string;
   now: string;
   time: string;
 
-
-
-  constructor(private toastCtrl: ToastController, private sqlite: SQLite, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private fire: AngularFireAuth, private toastCtrl: ToastController, private sqlite: SQLite, public navCtrl: NavController, public navParams: NavParams) {
     this.from = navParams.get('od');
     this.to = navParams.get('do');
     this.now = navParams.get('teraz');
@@ -48,32 +51,32 @@ export class ReportPage {
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
-      db.executeSql('SELECT SUM (price) AS totalJedzenie FROM wydatki WHERE category="jedzenie"', {})
+      db.executeSql('SELECT SUM (price) AS totalJedzenie FROM wydatki WHERE category="jedzenie" AND email=? AND created BETWEEN ? AND ?', [this.user, this.from, this.to])
         .then(res => {
           this.totalJedzenie = parseFloat(res.rows.item(0).totalJedzenie);
         })
-        .catch(e => console.log(e));
-      db.executeSql('SELECT SUM (price) AS totalRozrywka FROM wydatki WHERE category="rozrywka"', {})
+        .catch(e => alert(e));
+      db.executeSql('SELECT SUM (price) AS totalRozrywka FROM wydatki WHERE category="rozrywka" AND email=? AND created BETWEEN ? AND ?', [this.user, this.from, this.to])
         .then(res => {
           this.totalRozrywka = parseFloat(res.rows.item(0).totalRozrywka);
         })
         .catch(e => console.log(e));
-      db.executeSql('SELECT SUM (price) AS totalTransport FROM wydatki WHERE category="transport"', {})
+      db.executeSql('SELECT SUM (price) AS totalTransport FROM wydatki WHERE category="transport" AND email=? AND created BETWEEN ? AND ?', [this.user, this.from, this.to])
         .then(res => {
           this.totalTransport = parseFloat(res.rows.item(0).totalTransport);
         })
         .catch(e => console.log(e));
-      db.executeSql('SELECT SUM (price) AS totalEdukacja FROM wydatki WHERE category="edukacja"', {})
+      db.executeSql('SELECT SUM (price) AS totalEdukacja FROM wydatki WHERE category="edukacja" AND email=? AND created BETWEEN ? AND ?', [this.user, this.from, this.to])
         .then(res => {
           this.totalEdukacja = parseFloat(res.rows.item(0).totalEdukacja);
         })
         .catch(e => console.log(e));
-      db.executeSql('SELECT SUM (price) AS totalMieszkanie FROM wydatki WHERE category="mieszkanie"', {})
+      db.executeSql('SELECT SUM (price) AS totalMieszkanie FROM wydatki WHERE category="mieszkanie" AND email=? AND created BETWEEN ? AND ?', [this.user, this.from, this.to])
         .then(res => {
-          this.totalMieszkanie = parseFloat(res.rows.item(0).totalMieszkanie);
+         this.totalMieszkanie = parseFloat(res.rows.item(0).totalMieszkanie);
         })
         .catch(e => console.log(e));
-      db.executeSql('SELECT SUM (price) AS totalInne FROM wydatki WHERE category="inne"', {})
+      db.executeSql('SELECT SUM (price) AS totalInne FROM wydatki WHERE category="inne" AND email=? AND created BETWEEN ? AND ?', [this.user, this.from, this.to])
         .then(res => {
           this.totalInne = parseFloat(res.rows.item(0).totalInne);
         })
@@ -86,10 +89,15 @@ export class ReportPage {
     });
 
     toast.present();
+
   }
 
   closeReport() {
     this.navCtrl.push(MainPage);
   }
 
-}
+
+
+  }
+
+
