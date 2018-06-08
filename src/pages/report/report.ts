@@ -51,32 +51,38 @@ export class ReportPage {
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
-      db.executeSql('SELECT SUM (price) AS totalJedzenie FROM wydatki WHERE category="jedzenie" AND email=? AND created BETWEEN ? AND ?', [this.user, this.from, this.to])
+      db.executeSql('SELECT SUM (price) AS totalJedzenie FROM wydatki WHERE category="jedzenie" AND email=? AND created BETWEEN ? AND ?',
+       [this.user, this.from, this.to])
         .then(res => {
           this.totalJedzenie = parseFloat(res.rows.item(0).totalJedzenie);
         })
         .catch(e => alert(e));
-      db.executeSql('SELECT SUM (price) AS totalRozrywka FROM wydatki WHERE category="rozrywka" AND email=? AND created BETWEEN ? AND ?', [this.user, this.from, this.to])
+      db.executeSql('SELECT SUM (price) AS totalRozrywka FROM wydatki WHERE category="rozrywka" AND email=? AND created BETWEEN ? AND ?',
+       [this.user, this.from, this.to])
         .then(res => {
           this.totalRozrywka = parseFloat(res.rows.item(0).totalRozrywka);
         })
         .catch(e => console.log(e));
-      db.executeSql('SELECT SUM (price) AS totalTransport FROM wydatki WHERE category="transport" AND email=? AND created BETWEEN ? AND ?', [this.user, this.from, this.to])
+      db.executeSql('SELECT SUM (price) AS totalTransport FROM wydatki WHERE category="transport" AND email=? AND created BETWEEN ? AND ?',
+       [this.user, this.from, this.to])
         .then(res => {
           this.totalTransport = parseFloat(res.rows.item(0).totalTransport);
         })
         .catch(e => console.log(e));
-      db.executeSql('SELECT SUM (price) AS totalEdukacja FROM wydatki WHERE category="edukacja" AND email=? AND created BETWEEN ? AND ?', [this.user, this.from, this.to])
+      db.executeSql('SELECT SUM (price) AS totalEdukacja FROM wydatki WHERE category="edukacja" AND email=? AND created BETWEEN ? AND ?',
+       [this.user, this.from, this.to])
         .then(res => {
           this.totalEdukacja = parseFloat(res.rows.item(0).totalEdukacja);
         })
         .catch(e => console.log(e));
-      db.executeSql('SELECT SUM (price) AS totalMieszkanie FROM wydatki WHERE category="mieszkanie" AND email=? AND created BETWEEN ? AND ?', [this.user, this.from, this.to])
+      db.executeSql('SELECT SUM (price) AS totalMieszkanie FROM wydatki WHERE category="mieszkanie" AND email=? AND created BETWEEN ? AND ?',
+       [this.user, this.from, this.to])
         .then(res => {
          this.totalMieszkanie = parseFloat(res.rows.item(0).totalMieszkanie);
         })
         .catch(e => console.log(e));
-      db.executeSql('SELECT SUM (price) AS totalInne FROM wydatki WHERE category="inne" AND email=? AND created BETWEEN ? AND ?', [this.user, this.from, this.to])
+      db.executeSql('SELECT SUM (price) AS totalInne FROM wydatki WHERE category="inne" AND email=? AND created BETWEEN ? AND ?',
+       [this.user, this.from, this.to])
         .then(res => {
           this.totalInne = parseFloat(res.rows.item(0).totalInne);
         })
@@ -89,7 +95,6 @@ export class ReportPage {
     });
 
     toast.present();
-
   }
 
   closeReport() {

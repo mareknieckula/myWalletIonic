@@ -47,10 +47,12 @@ export class DodajWydatekPage {
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
-      db.executeSql('CREATE TABLE IF NOT EXISTS wydatki (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, created TEXT, category TEXT, price REAL)', {})
+      db.executeSql
+      ('CREATE TABLE IF NOT EXISTS wydatki (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, created TEXT, category TEXT, price REAL)', {})
         .then(res => console.log('Executed SQL'))
         .catch(e => console.log(e));
-      db.executeSql('INSERT INTO wydatki VALUES(NULL,?,?,?,?)', [this.wydatek.email, this.wydatek.created, this.wydatek.category, this.wydatek.price])
+      db.executeSql
+      ('INSERT INTO wydatki VALUES(NULL,?,?,?,?)', [this.wydatek.email, this.wydatek.created, this.wydatek.category, this.wydatek.price])
         .then(res => {
           console.log(res);
           alert('Zapisano!');

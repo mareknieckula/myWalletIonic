@@ -4,3 +4,4 @@ export interface Date {
   now: string;
   time: string;
 }
+

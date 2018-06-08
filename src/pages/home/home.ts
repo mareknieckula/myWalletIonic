@@ -24,7 +24,7 @@ export class HomePage {
   showInfo() {
     let alert = this.alertCtrl.create({
       title: 'myWallet',
-      subTitle: 'Informacje o tej fantastycznej aplikacji!',
+      subTitle: 'Aplikacja mobilna myWallet do kontrolowania finansów osobistych. Użyte technologie: Ionic, Apache Cordova. Autor: Marek Nieckula WSEI Kraków.',
       buttons: ['OK']
     });
     alert.present();

@@ -24,13 +24,13 @@ export class AnalizujPage {
     time: new Date().toLocaleTimeString()
   }
 
-  constructor(private sqlite: SQLite, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
 
   getReport() {
-
-    this.navCtrl.push(ReportPage, {od: this.date.from, do: this.date.to, teraz: this.date.now, czas: this.date.time });
+    this.navCtrl.push
+    (ReportPage, {od: this.date.from, do: this.date.to, teraz: this.date.now, czas: this.date.time });
   }
 
   ionViewDidLoad() {
